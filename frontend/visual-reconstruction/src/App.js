@@ -6,7 +6,7 @@ import {
   Link
 } from "react-router-dom";
 import './App.css';
-import Demos from './Pages/Demos';
+import DemoPage from './Pages/DemoPage'
 import Home from './Pages/Home';
 import Wiki from './Pages/Wiki';
 import About from './Pages/About';
@@ -40,7 +40,7 @@ function App() {
 
         <Switch>
           <Route path="/demos">
-            <Demos />
+            <DemoPage />
           </Route>
           <Route path="/wiki">
             <Wiki />

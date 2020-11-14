@@ -1,6 +1,12 @@
 import os
-from flask import Flask, flash, request, redirect, url_for
+from flask import Flask, flash, jsonify, request, redirect, url_for
+from flask_cors import CORS
+from routes.demos import demos
+
 app = Flask(__name__)
+app.register_blueprint(demos)
+
+CORS(app)
 
 @app.route('/')
 def vis_main():
@@ -10,7 +16,7 @@ def vis_main():
 def upload_file():
     #TODO: Get images from frontend here
     file = request.files['file']
-    return "Upload a file"
+    return jsonify(file)
 
 @app.route('/generate3d', methods=['GET', 'POST'])
 def generate_3d():

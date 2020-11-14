@@ -1,14 +1,13 @@
 import React from 'react';
+import ImageUpload from './UtilPages/ImageUpload';
 
 function Home() {
   return (
     <div className='Home'>
       <h2>
-        Main Demo
+        Visual Reconstruction Demo
       </h2>
-      <p>
-        Demo code here!
-      </p>
+      <ImageUpload />
     </div>
   );
 }

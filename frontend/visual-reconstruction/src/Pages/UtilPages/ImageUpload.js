@@ -1,10 +1,24 @@
 import React from 'react';
 
-class Demos extends React.Component {
+class ImageUpload extends React.Component {
     constructor(props) {
         super(props);
 
+        
         this.handleUploadImage = this.handleUploadImage.bind(this);
+        if (props.uploadFetchRequest == null) {
+          this.uploadFetchRequest = this.defaultFetchRequest.bind(this);
+        } else {
+          this.uploadFetchRequest = props.uploadFetchRequest.bind(this);
+        }
+         
+    }
+
+    defaultFetchRequest(data) {
+      fetch('http://localhost:5000/uploads', {
+          method: 'POST',
+          body: data,
+      })
     }
 
     handleUploadImage(e) {
@@ -13,20 +27,13 @@ class Demos extends React.Component {
         const data = new FormData();
         data.append('file', this.uploadInput.files[0]);
 
-        fetch('http://localhost:5000/uploads', {
-            method: 'POST',
-            body: data,
-        });
+        this.uploadFetchRequest(data);
     }
 
     render() {
       return (
-        <div className="Demos">
-          <h2>
-            Other Demos
-          </h2>
+        <div className="ImageUpload">
           <p>
-            Demos code here!
             <form onSubmit={this.handleUploadImage}>
                 <div>
                   <input ref={(ref) => { this.uploadInput = ref; }} type="file" />
@@ -43,4 +50,4 @@ class Demos extends React.Component {
 
 }
 
-export default Demos;
+export default ImageUpload;
