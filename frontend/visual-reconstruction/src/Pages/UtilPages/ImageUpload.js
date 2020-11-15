@@ -15,7 +15,7 @@ class ImageUpload extends React.Component {
     }
 
     defaultFetchRequest(data) {
-      fetch('http://localhost:5000/uploads', {
+      fetch('https://visrec-backend.herokuapp.com/uploads', {
           method: 'POST',
           body: data,
       })

@@ -12,7 +12,7 @@ class MnistCNN extends React.Component {
   }
 
   handleDigitDetection(data) {
-    fetch('http://localhost:5000/demos/mnist_cnn', {
+    fetch('https://visrec-backend.herokuapp.com/demos/mnist_cnn', {
         method: 'POST',
         body: data,
     }).then(response => {
