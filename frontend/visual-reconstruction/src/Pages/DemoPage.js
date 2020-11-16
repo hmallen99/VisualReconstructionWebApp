@@ -1,40 +1,46 @@
 import React from 'react';
 import { Link, Route, Switch, useParams, useRouteMatch } from 'react-router-dom';
-import MnistCNN from './Demos/MnistCNN';
-import SpatialSmoothing from './Demos/SpatialSmoothing';
+import ListItem from '@material-ui/core/ListItem';
+import ListItemText from '@material-ui/core/ListItemText';
+import Container from '@material-ui/core/Container';
+import SidebarLink from './UtilPages/SidebarLink';
 import DemoMap from './UtilPages/DemoMap';
+import { Drawer, Tabs } from '@material-ui/core';
 
 function DemoPage() {
   let { path, url } = useRouteMatch();
 
   return (
-    <div style={{ display: "flex" }}>
-      <div
-          style={{
-            padding: "5px",
-            width: "15%",
-            background: "#f0f0f0"
-          }}
-      >
-        <ul>
-          <li>
-            <Link to={`${url}/mnist_cnn`}>MNIST CNN</Link>
-          </li>
-          <li>
-            <Link to={`${url}/spatial_smoothing`}>Spatial Smoothing</Link>
-          </li>
-        </ul>
+    <div style={{ 
+      display: "flex" 
+    }}>
+        <div style={{outline: "5px black"}}>
+          <Tabs 
+            orientation="vertical"
+            variant="scrollable"
+            style={{backgroundColor: "lightgray"}}
+          >
+            <SidebarLink to={`${url}/mnist_cnn`} text="MNIST CNN" />
+            <SidebarLink to={`${url}/spatial_smoothing`} text="SPATIAL SMOOTHING" />
+          </Tabs>
+        </div>
+        
+        
+        
 
         <Switch>
           <Route exact path={path} />
           <Route path={`${path}/:demoID`} />
         </Switch>
-      </div>
+      
 
       <div style={{ flex: 1, padding: "10px" }}>
         <Switch>
           <Route exact path={path}>
-            <h2>Demos</h2>
+            <Container fixed>
+              <h2>Demos</h2>
+            </Container>
+            
           </Route>
           <Route path={`${path}/:demoID`}>
             <Demo />
@@ -50,8 +56,10 @@ function Demo() {
   const DemoComponent = DemoMap[demoID];
 
   return(
-    <div>
-      <DemoComponent />
+    <div className="Demo">
+      <Container fixed>
+        <DemoComponent />
+      </Container>
     </div>
   );
 }

@@ -10,32 +10,27 @@ import DemoPage from './Pages/DemoPage'
 import Home from './Pages/Home';
 import Wiki from './Pages/Wiki';
 import About from './Pages/About';
+import TopbarLink from './Pages/UtilPages/TopbarLink';
+import AppBar from '@material-ui/core/AppBar';
+import Tabs from '@material-ui/core/Tabs';
 
 function App() {
   return (
     <Router>
-      <div className="App">
-        <nav className="App-header">
-          <div className="App-header-box">
-            <p>
-              <Link to="/">Home</Link>
-            </p>
-          </div>
-          <div className="App-header-box">
-            <p>
-              <Link to="/demos">Demos</Link>
-            </p>
-          </div>
-          <div className="App-header-box">
-            <p>
-              <Link to="/wiki">Wiki</Link>
-            </p>
-          </div>
-          <div className="App-header-box">
-            <p>
-              <Link to="/about">About</Link>
-            </p>
-          </div>
+      <div>
+        <nav>
+          <AppBar position="static">
+            <Tabs
+              variant="fullWidth"
+              indicatorColor="primary"
+              textColor="primary"
+            >
+              <TopbarLink to="/" text="Home" />
+              <TopbarLink to="/demos" text="Demos" />
+              <TopbarLink to="/wiki" text="Wiki" />
+              <TopbarLink to="/about" text="About" />
+            </Tabs>
+          </AppBar>
         </nav>
 
         <Switch>
